@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "sowmya",
+    "password": "postgres",
+    "database": "notes",
+    "host": "postgres-1.clm3eqndxrda.ap-south-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
