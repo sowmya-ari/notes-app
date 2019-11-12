@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
 });
 
-require('dotenv/types').config()
+require('dotenv').config()
 const port = process.env.PORT
 models.sequelize.sync({ force: true }).then(() => {
     app.listen(port, () => {
