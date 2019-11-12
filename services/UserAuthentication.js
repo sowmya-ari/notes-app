@@ -1,26 +1,34 @@
 const models = require('../models/index')
 
-const authorizeUser = async function(email,hashPassword){
+const authorizeUser = async function(username,hashPassword){
     try{
-       var user = await models.User.create({
-         email: email,
+       var user = await models.Users.create({
+         username: username,
          password: hashPassword
         })
        return user
     }
-    catch (error){
+    catch (error){ 
       throw Error('database error')
     }
 }
-const authenticateUser = async function(email,hashPassword){
+const authenticateUser = async function(username,password){
     try {
-        let user = await User.authenticate(username, password)
-        user = await user.authorize();
-        return res.json(user);
-    
-    } catch (err) {
-        return res.status(400).send('invalid username or password');
-    }
+        let user = await models.Users.findOne({
+            where:{
+                username : username
+            }
+        })
+        if(!user) {
+            return "username or password is incorrect and also check whether you have authorization to this website"   
+        }
+        else{
+            return "sign in is successfull "  
+        }
+    } 
+    catch (error){
+        throw Error('database error')
+    } 
 }
 module.exports = {
     authorizeUser,
