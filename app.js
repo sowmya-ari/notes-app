@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 require('dotenv').config()
 const port = process.env.PORT
-models.sequelize.sync().then(() => {
+models.sequelize.sync({ force: true }).then(() => {
     app.listen(port, () => {
       console.log(`notes app is listening on port ${port}!`)
     });
