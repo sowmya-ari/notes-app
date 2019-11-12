@@ -20,7 +20,10 @@ const authenticateUser = async function(username,password){
             }
         })
         if(!user) {
-            return "username or password is incorrect and also check whether you have authorization to this website"   
+            return "username and also check whether you have authorization to this website"   
+        }
+        else if(user){
+            return "password is incorrect"
         }
         else{
             return "sign in is successfull "  
