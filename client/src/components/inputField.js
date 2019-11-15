@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/inputField.css"
 class Inputfield extends React.Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,7 @@ class Inputfield extends React.Component {
           <input
             type="text"
             placeholder="Title"
+            className="notes_title"
             value={this.state.title}
             onChange={this.handleChange}
           />
