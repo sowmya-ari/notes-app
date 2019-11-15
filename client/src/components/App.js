@@ -5,10 +5,8 @@ import CustomRouter from "./router";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Notes App</p>
+        <h1 className="heading">Notes</h1>
         <CustomRouter/>
-      </header>
     </div>
   );
 }
