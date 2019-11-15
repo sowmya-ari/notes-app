@@ -3,7 +3,7 @@ var services = require('../services/notes')
 const createNote = async function(req,res){
   var title= req.body.title
   var content = req.body.content  
-  if(!req.body.content){
+  if(!content && !title){
     return res.status(400).send({
         message : " Note content should not be empty "
     })
