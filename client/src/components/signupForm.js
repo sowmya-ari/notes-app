@@ -2,6 +2,7 @@ import React from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from "axios"
+import "../styles/signupform.css"
 
 class Signupform extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class Signupform extends React.Component {
 
  render() {
    return (
-    <div className="Sign Up">
+    <div className="SignUp">
       <Form onSubmit={this.handleSubmit}>
         <Form.Group controlId="formBasicUsername">
          <Form.Label>Username</Form.Label>
