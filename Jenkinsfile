@@ -61,7 +61,7 @@ pipeline {
              sh 'which ansible'
             }
         }    
-        stage('Deployment')
+        stage('Deployment'){
             steps {
               withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'privatekey-ec2', keyFileVariable: 'SSH_KEY_FOR_ec2')]) 
               {
