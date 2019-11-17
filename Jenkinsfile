@@ -69,8 +69,7 @@ pipeline {
                   sh 'cd ansible && ansible all -m ping -i inventory.txt'
                   sh 'cd ansible && ansible-playbook notes.yml -i inventory.txt -k -K'
                 }     
-            }
+             }
         }
-        
     }
 }    
