@@ -24,5 +24,20 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            parallel{
+                stage('backend testing'){
+                  steps {
+                    sh 'cd test && npm test'
+                  }
+                }
+                stage('frontend testing'){
+                  steps {
+                    sh 'cd client/src/test && npm test a'
+                  }
+                }
+            }
+        }
+
     }
 }    
