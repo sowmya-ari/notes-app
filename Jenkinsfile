@@ -52,6 +52,13 @@ pipeline {
                     sh 'docker tag client sowmya1234/notes-client:latest' 
                   }
                 }
+                stage('Ansible'){
+                  steps {
+                    sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
+                    sh 'apt-get install sshpass'
+                    sh 'which ansible'
+                  }
+                }
             }
         }
     }
