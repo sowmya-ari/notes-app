@@ -33,11 +33,26 @@ pipeline {
                 }
                 stage('frontend testing'){
                   steps {
-                    sh 'cd client/src/test && npm test a'
+                    sh 'cd client/src/test && npm test'
                   }
                 }
             }
         }
-
+        stage('Building Docker image') {
+            parallel{
+                stage('server image'){
+                  steps {
+                    sh 'docker image build -t web .'
+                    sh 'docker tag web sowmya1234/notes-web:latest'
+                  }
+                }
+                stage('client image'){
+                  steps {
+                    sh 'cd client && docker image build -t client .'
+                    sh 'docker tag client sowmya1234/notes-client:latest' 
+                  }
+                }
+            }
+        }
     }
 }    
