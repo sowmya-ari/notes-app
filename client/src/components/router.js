@@ -3,29 +3,34 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Signupform from "./signupForm";
 import Signinform from "./signinForm";
 import AllNotes from "./notes";
-import '../styles/router.css'
+import { createHashHistory } from 'history'
+import '../styles/router.css';
 class Customrouter extends React.Component {
+  handleClick =(event)=>{
+    const history = createHashHistory()
+    localStorage.clear()
+    return history.push('/')
+  }
   render() {
     return (
       <BrowserRouter>
         <div>
           <div className="links">
-            <Link to={"/"} className="nav-link">
-              {" "}
-              Home{" "}
-            </Link>{" "}
-            <Link to={"/signup"} className="nav-link">
-              Sign Up
-            </Link>{" "}
-            <Link to={"/signin"} className="nav-link">
+            <Link to={"/notes"} className="nav-link">
+              Notes
+            </Link>{" "}  
+            {!localStorage.getItem("username") && <Link to={"/signup"} className="nav-link">Sign Up
+            </Link>}
+            {!localStorage.getItem("username") &&   <Link to={"/"} className="nav-link">
               Sign In
-            </Link>{" "}
+            </Link>}
+            {localStorage.getItem("username") && <button onClick={this.handleClick}>Log Out</button> }
           </div   >
           <hr />
           <Switch>
-            <Route path="/" exact component={AllNotes} />
-            <Route path="/signup" component={Signupform} />
-            <Route path="/signin" component={Signinform} />
+            <Route path="/notes" component={AllNotes} />
+            <Route path="/signup" exact component={Signupform} />
+            <Route path="/" component={Signinform} />
           </Switch>
         </div>
       </BrowserRouter>

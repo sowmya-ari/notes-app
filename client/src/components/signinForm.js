@@ -2,14 +2,30 @@ import React from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from "axios"
-
+const jwt = require("jsonwebtoken");
 class Signinform extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
         username: '',
-        password: ''
+        password: '',
+        result:{}   
     };
+  }
+  componentDidMount(){
+    const token = localStorage.getItem("jwtToken")
+    console.log(token)
+    var decodedToken=jwt.decode(token);
+    console.log(decodedToken)
+    var dateNow = new Date();
+    if(token){
+      if(decodedToken.exp < dateNow.getTime()){
+       return this.props.history.push('/notes')
+      } 
+    }
+    else{
+      return this.props.history.push('/')
+    }
   }
   handleSubmit = event => {
     event.preventDefault();
@@ -20,8 +36,14 @@ class Signinform extends React.Component {
     axios
     .post("/signin",data)
     .then(res => {
-    const {token} = res.data
-    localStorage.setItem("jwtToken", token);
+    this.setState({ result: res.data });  
+    console.log(res.data)
+    if(res.data.success){
+     const {token} = res.data
+     localStorage.setItem("jwtToken", token);
+     localStorage.setItem("username", res.data.username);
+     return this.props.history.push('/notes')
+    }
     })
     this.setState({
           username: "",
@@ -42,6 +64,9 @@ class Signinform extends React.Component {
  render() {
    return (
     <div className="Login">
+      <div>
+        {!this.state.result.result && <h2>{this.state.result.message}</h2>}
+      </div>
       <Form onSubmit={this.handleSubmit}>
         <Form.Group controlId="formBasicUsername">
          <Form.Label>Username</Form.Label>

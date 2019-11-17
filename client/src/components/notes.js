@@ -16,6 +16,11 @@ class AllNotes extends React.Component {
   componentDidMount() {
     this.getAllNotes();
   }  
+  componentWillMount(){
+    if(!localStorage.getItem("username")){
+      return this.props.history.push('/')
+    }
+  }
   getAllNotes = () => {
     fetch('/notes')
     .then(response => response.json())
