@@ -57,6 +57,8 @@ pipeline {
                     sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
                     sh 'apt-get install sshpass'
                     sh 'which ansible'
+                    sh 'cd ansible && ansible all -m ping -i inventory.txt'
+                    sh 'cd ansible && ansible-playbook docker.yml -i inventory.txt -k -K'
                   }
                 }
             }
