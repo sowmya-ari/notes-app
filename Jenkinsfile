@@ -66,8 +66,6 @@ pipeline {
               withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'privatekey-ec2', keyFileVariable: 'SSH_KEY_FOR_ec2')]) 
               {
                 sh 'ssh -i ${SSH_KEY_FOR_ec2} -o StrictHostKeyChecking=no ec2-user@18.233.245.21'
-                sh 'chmod 700 /var/lib/jenkins/.ssh'
-                sh 'chmod 600 /var/lib/jenkins/.ssh/*'
                 sh 'cd ansible && ansible all -m ping -i inventory.txt'
                 sh 'cd ansible && ansible-playbook notes.yml -i inventory.txt -k -K'
               }     
