@@ -45,14 +45,13 @@
             POSTGRES_PORT: "5432"
           ports:
             - "8080:8080"
-          command: ["npm","run","dev"]  
+         
 
       - name: Starting client server
         docker_container:
           name: client
           image: sowmya1234/notes-client
           state: started
-          command: ["npm","start"]
           restart: yes
           links:
             - web
