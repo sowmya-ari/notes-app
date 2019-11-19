@@ -54,6 +54,14 @@ pipeline {
                 }
             }
         }        
+        stage('Deploying docker images to dockerhub'){
+            steps {
+                withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+                 sh 'docker push sowmya1234/notes-client:latest'
+                 sh 'docker push sowmya1234/notes-web:latest'
+                }
+            }
+        }
         stage('Ansible installation'){
             steps {
              sh 'apt-get update -qy && apt-get install -qy software-properties-common && apt-get install -qy ansible'
