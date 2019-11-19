@@ -12,6 +12,7 @@ class Signinform extends React.Component {
         result:{}   
     };
   }
+  
   componentDidMount(){
     const token = localStorage.getItem("jwtToken")
     console.log(token)
@@ -20,7 +21,7 @@ class Signinform extends React.Component {
     var dateNow = new Date();
     if(token){
       if(decodedToken.exp < dateNow.getTime()){
-       return this.props.history.push('/notes')
+        this.props.history.push('/notes')
       } 
     }
     else{
@@ -42,7 +43,7 @@ class Signinform extends React.Component {
      const {token} = res.data
      localStorage.setItem("jwtToken", token);
      localStorage.setItem("username", res.data.username);
-     return this.props.history.push('/notes')
+     return this.props.history.push('/notes') 
     }
     })
     this.setState({

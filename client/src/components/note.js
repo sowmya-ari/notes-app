@@ -106,21 +106,23 @@ class Note extends React.Component {
             <button
               type="button"
               className="btn btn-secondary btn-sm"
-              onClick={this.DeleteNote.bind(this)}>Delete</button>
+              onClick={this.DeleteNote.bind(this)}>Delete
+            </button>
             <button
               type="button"
               id="color-picker-2"
               className="btn btn-secondary btn-sm"
-              onClick={this.handleClick}>Color</button>
+              onClick={this.handleClick}>Color
+            </button>
             {this.state.displayColorPicker ? (<div style={popover}><div style={cover} onClick={this.handleClose} />
             <CompactPicker color={this.state.color} onChange={this.handleChange}/></div>) : null}
           </h5>
-        <div className="card-body text-dark" onClick={this.handleEditing.bind(this)} style={{ ...view, ...color }}>
+          <div className="card-body text-dark" onClick={this.handleEditing.bind(this)} style={{ ...view, ...color }}>
             <h1 className="card-title">{title}</h1>
             <p className="card-text ">{content}</p>
+          </div>
         </div>
-        </div>
-        <div style={edit}>
+        <div style={edit} className="editing">
           <textarea
             type="text"
             value={this.state.changedTitle}

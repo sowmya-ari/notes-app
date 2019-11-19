@@ -1,40 +1,22 @@
 import React from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import { withRouter,Route, Switch } from "react-router-dom";
 import Signupform from "./signupForm";
 import Signinform from "./signinForm";
 import AllNotes from "./notes";
-import { createHashHistory } from 'history'
+import Logout from "./logout"
 import '../styles/router.css';
 class Customrouter extends React.Component {
-  handleClick =(event)=>{
-    const history = createHashHistory()
-    localStorage.clear()
-    return history.push('/')
-  }
   render() {
     return (
-      <BrowserRouter>
         <div>
-          <div className="links">
-            <Link to={"/notes"} className="nav-link">
-              Notes
-            </Link>{" "}  
-            {!localStorage.getItem("username") && <Link to={"/signup"} className="nav-link">Sign Up
-            </Link>}
-            {!localStorage.getItem("username") &&   <Link to={"/"} className="nav-link">
-              Sign In
-            </Link>}
-            {localStorage.getItem("username") && <button onClick={this.handleClick}>Log Out</button> }
-          </div   >
-          <hr />
           <Switch>
             <Route path="/notes" component={AllNotes} />
-            <Route path="/signup" exact component={Signupform} />
-            <Route path="/" component={Signinform} />
+            <Route path="/signup" component={Signupform} />
+            <Route path="/" exact component={Signinform}/>
+            <Route path="/logout" component={Logout}/>
           </Switch>
         </div>
-      </BrowserRouter>
     );
   }
 }
-export default Customrouter;
+export default withRouter(Customrouter);

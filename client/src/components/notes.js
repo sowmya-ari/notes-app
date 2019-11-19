@@ -1,6 +1,7 @@
 import React from "react";
 import Note from "./note";
 import Inputfield from "./inputField";
+import "../styles/note.css"
 
 class AllNotes extends React.Component {
   constructor(props) {
