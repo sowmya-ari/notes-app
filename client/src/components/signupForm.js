@@ -31,6 +31,7 @@ class Signupform extends React.Component {
         }
         else{
         this.setState({ result: res.data });
+        return this.props.history.push('/') 
         }
       })
       .catch(err => console.log(err));
