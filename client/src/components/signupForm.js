@@ -26,11 +26,8 @@ class Signupform extends React.Component {
     axios
       .post("/signup", data)
       .then(res => {
-        console.log(res.data)
-        console.log(res.data.exist)
         if(res.data.exist===true){
-          console.log(res.data.exist)
-          return this.props.history.push('/')
+          this.setState({ result: res.data });
         }
         else{
         this.setState({ result: res.data });
