@@ -37,7 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwa": "^1.4.1",
     "jws": "^3.2.2",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^1.19.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
